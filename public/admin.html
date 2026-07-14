@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDACEK AI — Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #050a18;
+      --bg-card: rgba(15, 25, 50, 0.6);
+      --border: rgba(79, 140, 255, 0.12);
+      --text: #e2e8f0;
+      --text-dim: #8892b0;
+      --accent: #4f8cff;
+      --green: #43e97b;
+      --gold: #ffb347;
+      --red: #f5576c;
+      --purple: #9b6dff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h1 {
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header .badge {
+      background: rgba(67, 233, 123, 0.15);
+      color: var(--green);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .back-link {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ─── RAG Status Card ─── */
+    .rag-status {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .rag-status h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .rag-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .rag-stat {
+      background: rgba(79, 140, 255, 0.06);
+      border: 1px solid rgba(79, 140, 255, 0.08);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .rag-stat .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .rag-stat .label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* ─── Source Section ─── */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section h2 .count {
+      background: rgba(79, 140, 255, 0.15);
+      color: var(--accent);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+    }
+
+    .source-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.2s;
+    }
+
+    .source-card:hover {
+      border-color: rgba(79, 140, 255, 0.3);
+    }
+
+    .source-card.external {
+      border-color: rgba(255, 179, 71, 0.12);
+    }
+    .source-card.external:hover {
+      border-color: rgba(255, 179, 71, 0.3);
+    }
+
+    .source-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .source-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .source-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .source-desc {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .source-url {
+      font-size: 0.68rem;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .source-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .badge-sm {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .badge-indexed {
+      background: rgba(67, 233, 123, 0.15);
+      color: var(--green);
+    }
+
+    .badge-not-indexed {
+      background: rgba(136, 146, 176, 0.15);
+      color: var(--text-dim);
+    }
+
+    .badge-enabled {
+      background: rgba(79, 140, 255, 0.15);
+      color: var(--accent);
+    }
+
+    .badge-priority {
+      background: rgba(155, 109, 255, 0.15);
+      color: var(--purple);
+    }
+
+    /* ─── Admin Actions ─── */
+    .admin-actions {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .admin-actions h2 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .action-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.85rem;
+      width: 220px;
+    }
+
+    .action-input::placeholder { color: var(--text-dim); }
+    .action-input:focus { outline: none; border-color: var(--accent); }
+
+    .action-btn {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+
+    .action-btn:hover { transform: translateY(-1px); opacity: 0.9; }
+    .action-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .action-status {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .action-status.success { color: var(--green); }
+    .action-status.error { color: var(--red); }
+
+    /* ─── Loading ─── */
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-dim);
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      .rag-grid { grid-template-columns: repeat(2, 1fr); }
+      .source-badges { flex-direction: column; }
+      .action-row { flex-direction: column; }
+      .action-input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🛡️ PDACEK AI — Admin Dashboard</h1>
+      <span class="badge" id="rag-badge">Loading...</span>
+      <a href="/" class="back-link">← Back to Chat</a>
+    </div>
+
+    <!-- RAG Status -->
+    <div class="rag-status">
+      <h2>📊 RAG Knowledge Base Status</h2>
+      <div class="rag-grid" id="rag-grid">
+        <div class="loading">Loading status...</div>
+      </div>
+    </div>
+
+    <!-- Official Sources -->
+    <div class="section" id="official-section">
+      <h2>🏛️ Official Sources <span class="count" id="official-count">0</span></h2>
+      <div id="official-list"><div class="loading">Loading...</div></div>
+    </div>
+
+    <!-- External Sources -->
+    <div class="section" id="external-section">
+      <h2>⭐ External Review Sources <span class="count" id="external-count">0</span></h2>
+      <div id="external-list"><div class="loading">Loading...</div></div>
+    </div>
+
+    <!-- Admin Actions -->
+    <div class="admin-actions">
+      <h2>⚙️ Admin Actions</h2>
+      <div class="action-row">
+        <input type="password" class="action-input" id="admin-pass" placeholder="Admin password">
+        <button class="action-btn" id="recrawl-btn" onclick="triggerRecrawl()">🕷️ Re-Crawl Website</button>
+        <span class="action-status" id="action-status"></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function loadData() {
+      try {
+        const res = await fetch("/api/sources");
+        const data = await res.json();
+
+        // RAG status
+        const rag = data.rag || {};
+        const badge = document.getElementById("rag-badge");
+        badge.textContent = rag.indexed ? "RAG Active" : "Not Indexed";
+
+        document.getElementById("rag-grid").innerHTML = `
+          <div class="rag-stat"><div class="value">${rag.total_chunks || 0}</div><div class="label">Chunks Indexed</div></div>
+          <div class="rag-stat"><div class="value">${rag.total_pages || 0}</div><div class="label">Pages Crawled</div></div>
+          <div class="rag-stat"><div class="value">${rag.embedding_model || "—"}</div><div class="label">Embed Model</div></div>
+          <div class="rag-stat"><div class="value">${rag.last_crawled ? new Date(rag.last_crawled).toLocaleDateString() : "Never"}</div><div class="label">Last Crawled</div></div>
+        `;
+
+        // Official sources
+        const offList = document.getElementById("official-list");
+        document.getElementById("official-count").textContent = data.official?.length || 0;
+        offList.innerHTML = (data.official || []).map(s => renderSource(s, false)).join("");
+
+        // External sources
+        const extList = document.getElementById("external-list");
+        document.getElementById("external-count").textContent = data.external?.length || 0;
+        extList.innerHTML = (data.external || []).map(s => renderSource(s, true)).join("");
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderSource(s, isExternal) {
+      const icon = isExternal ? "⭐" : (s.category === "official_social" ? "📱" : "🏛️");
+      let indexBadge = '';
+      if (s.indexed) {
+        indexBadge = '<span class="badge-sm badge-indexed">Indexed</span>';
+      } else if (isExternal || s.category === "official_social" || s.id === "alumni_portal") {
+        indexBadge = '<span class="badge-sm badge-indexed" style="background: rgba(100, 200, 255, 0.2); color: #64c8ff;">Pre-Trained</span>';
+      } else {
+        indexBadge = '<span class="badge-sm badge-not-indexed">Not Indexed</span>';
+      }
+      const ratingHtml = s.rating ? `<br><span style="color:#ffb347;font-size:0.7rem">Rating: ${s.rating}</span>` : "";
+
+      return `
+        <div class="source-card ${isExternal ? 'external' : ''}">
+          <span class="source-icon">${icon}</span>
+          <div class="source-details">
+            <div class="source-name">${s.name}</div>
+            <div class="source-desc">${s.description}${ratingHtml}</div>
+            <a href="${s.url}" target="_blank" rel="noopener" class="source-url">${s.url}</a>
+          </div>
+          <div class="source-badges">
+            ${indexBadge}
+            <span class="badge-sm badge-priority">P${s.priority}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    async function triggerRecrawl() {
+      const pass = document.getElementById("admin-pass").value;
+      const status = document.getElementById("action-status");
+      const btn = document.getElementById("recrawl-btn");
+
+      if (!pass) { status.textContent = "Enter admin password"; status.className = "action-status error"; return; }
+
+      btn.disabled = true;
+      status.textContent = "Starting re-crawl...";
+      status.className = "action-status";
+
+      try {
+        const res = await fetch("/api/admin/recrawl", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: pass }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          status.textContent = "✅ " + data.message;
+          status.className = "action-status success";
+        } else {
+          status.textContent = "❌ " + (data.error || "Failed");
+          status.className = "action-status error";
+        }
+      } catch (err) {
+        status.textContent = "❌ Network error";
+        status.className = "action-status error";
+      }
+      btn.disabled = false;
+    }
+
+    loadData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDA College of Engineering — AI Campus Guide</title>
+  <meta name="description" content="AI-powered campus guide chatbot for PDA College of Engineering, Kalaburagi. Get instant answers about admissions, courses, placements, hostels, and campus life." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ Animated Background Particles ═══ -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ═══ Navigation Bar ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-content">
+      <a class="nav-brand" href="#hero" aria-label="PDACEK home">
+        <div class="nav-logo">P</div>
+        <div class="nav-text">
+          <span class="nav-title">PDACEK</span>
+          <span class="nav-sub">Est. 1958</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#stats">About</a>
+        <a href="#departments">Departments</a>
+        <a href="#student-hub">Student Hub</a>
+        <a href="#features">Facilities</a>
+        <a href="https://www.pdacek.ac.in" target="_blank" rel="noopener">Official Site ↗</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ Hero Section ═══ -->
+  <section id="hero" class="hero-section">
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-glow hero-glow-3"></div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI-POWERED CAMPUS GUIDE
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line">P.D.A. College of</span>
+        <span class="title-line gradient-text">Engineering</span>
+        <span class="title-line small-line">Kalaburagi, Karnataka</span>
+      </h1>
+      <p class="hero-description">
+        Your intelligent companion for everything about PDACEK — from admissions & courses to 
+        placements & campus life. Ask anything, get instant expert answers.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary-hero" onclick="document.getElementById('chat-toggle').click()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Start Chatting
+        </button>
+        <a href="https://www.pdacek.ac.in" target="_blank" class="btn-outline-hero">
+          Visit Official Website →
+        </a>
+      </div>
+
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <div class="trust-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2);">S</div>
+          <div class="trust-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">P</div>
+          <div class="trust-avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">A</div>
+          <div class="trust-avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">R</div>
+        </div>
+        <span class="trust-text">Built for <strong>students, parents & alumni</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Animated Stats Section ═══ -->
+  <section id="stats" class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎓</div>
+        <div class="stat-number" data-target="1958">0</div>
+        <div class="stat-label">Established Since</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📐</div>
+        <div class="stat-number" data-target="13">0</div>
+        <div class="stat-label">Engineering Branches</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏫</div>
+        <div class="stat-number" data-target="71" data-suffix=" Acres">0</div>
+        <div class="stat-label">Green Campus</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏛️</div>
+        <div class="stat-number" data-raw="UGC / VTU">UGC / VTU</div>
+        <div class="stat-label">Autonomous Since 2007</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Quick Topics Grid ═══ -->
+  <section id="departments" class="topics-section">
+    <div class="section-header">
+      <span class="section-badge">EXPLORE</span>
+      <h2 class="section-title">What would you like to know?</h2>
+      <p class="section-subtitle">Click any topic to instantly start a conversation</p>
+    </div>
+    <div class="topics-grid">
+      <button class="topic-card" data-question="Tell me about admissions process, eligibility criteria, and CET codes for PDA College">
+        <div class="topic-icon-wrap" style="--accent: #667eea;">
+          <span class="topic-icon">🎯</span>
+        </div>
+        <h3>Admissions & Eligibility</h3>
+        <p>CET/COMEDK codes, eligibility, fees & application process</p>
+      </button>
+      <button class="topic-card" data-question="List all B.E. and B.Arch branches offered at PDA College with intake details">
+        <div class="topic-icon-wrap" style="--accent: #f093fb;">
+          <span class="topic-icon">📚</span>
+        </div>
+        <h3>Courses & Branches</h3>
+        <p>13 engineering branches including AI/ML, CSE, ECE & more</p>
+      </button>
+      <button class="topic-card" data-question="Tell me about placements at PDA College - companies that visit, training provided, and placement statistics">
+        <div class="topic-icon-wrap" style="--accent: #43e97b;">
+          <span class="topic-icon">💼</span>
+        </div>
+        <h3>Placements & Careers</h3>
+        <p>Placement cell, recruiting companies, training & statistics</p>
+      </button>
+      <button class="topic-card" data-question="What are the hostel and campus facilities at PDA College? Tell me about the library, sports, Wi-Fi, and labs">
+        <div class="topic-icon-wrap" style="--accent: #4facfe;">
+          <span class="topic-icon">🏠</span>
+        </div>
+        <h3>Hostels & Facilities</h3>
+        <p>Hostels, library, sports, Wi-Fi, labs & innovation center</p>
+      </button>
+      <button class="topic-card" data-question="Tell me about student life at PDA - clubs, fests, hackathons, cultural events, and extracurricular activities">
+        <div class="topic-icon-wrap" style="--accent: #f5576c;">
+          <span class="topic-icon">🎉</span>
+        </div>
+        <h3>Student Life & Events</h3>
+        <p>Clubs, NIRMAN fest, hackathons, workshops & cultural events</p>
+      </button>
+      <button class="topic-card" data-question="How does the examination system work at PDA College? Tell me about the autonomous evaluation, internal assessment, and results portal">
+        <div class="topic-icon-wrap" style="--accent: #fa709a;">
+          <span class="topic-icon">📝</span>
+        </div>
+        <h3>Exams & Academics</h3>
+        <p>Autonomous evaluation, semester exams, results & regulations</p>
+      </button>
+      <button class="topic-card" data-question="What is the fee structure for PDA College of Engineering for the current academic year?">
+        <div class="topic-icon-wrap" style="--accent: #ffd700;">
+          <span class="topic-icon">💰</span>
+        </div>
+        <h3>Fee Structure</h3>
+        <p>Tuition fees, management quota fees & payment details</p>
+      </button>
+      <button class="topic-card" data-question="Show me the prospectus and admission application form details for PDA College">
+        <div class="topic-icon-wrap" style="--accent: #00c9ff;">
+          <span class="topic-icon">📄</span>
+        </div>
+        <h3>Prospectus</h3>
+        <p>College prospectus, application forms & brochures</p>
+      </button>
+      <button class="topic-card" data-question="What are the contact details for PDA College - principal office, admissions, placement cell and departments?">
+        <div class="topic-icon-wrap" style="--accent: #7f5af0;">
+          <span class="topic-icon">📞</span>
+        </div>
+        <h3>Contact Details</h3>
+        <p>Principal, admissions, departments & placement contacts</p>
+      </button>
+      <button class="topic-card" data-question="Tell me about scholarships available at PDA College and alumni network">
+        <div class="topic-icon-wrap" style="--accent: #2cb67d;">
+          <span class="topic-icon">🎓</span>
+        </div>
+        <h3>Scholarships & Alumni</h3>
+        <p>Scholarships, alumni portal & student financial support</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- ═══ Student Success Hub ═══ -->
+  <section id="student-hub" class="hub-section" aria-labelledby="hub-title">
+    <div class="section-header">
+      <span class="section-badge">STUDENT SUCCESS HUB</span>
+      <h2 id="hub-title" class="section-title">Turn confusion into a clear next step</h2>
+      <p class="section-subtitle">Useful tools for the moments students most often get stuck. Official answers open in the Campus Guide with sources.</p>
+    </div>
+
+    <p class="hub-trust-note">🔎 <strong>Official-first:</strong> deadlines, fees, regulations, and PDFs are checked against the indexed PDACEK knowledge base. Always confirm a deadline from its linked notice.</p>
+
+    <div class="hub-grid">
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>⏰</span><div><h3>Deadline Radar</h3><p>Find the latest official deadline before you miss it.</p></div></div>
+        <form id="deadline-form" class="hub-form">
+          <label for="deadline-type">I need a deadline for</label>
+          <select id="deadline-type"><option value="admission">Admission</option><option value="exam form">Exam form</option><option value="fee payment">Fee payment</option><option value="revaluation">Revaluation</option><option value="scholarship">Scholarship</option></select>
+          <button type="submit" class="hub-btn">Check official deadline <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>🧭</span><div><h3>Admission Navigator</h3><p>Get a personalized eligibility and document checklist.</p></div></div>
+        <form id="admission-form" class="hub-form hub-form-grid">
+          <label>Route<select id="admission-route"><option>KCET</option><option>COMEDK</option><option>Management quota</option><option>Transfer / other</option></select></label>
+          <label>Programme<select id="admission-program"><option>B.E.</option><option>B.Arch</option><option>M.Tech</option></select></label>
+          <label class="hub-form-full">Stage<select id="admission-stage"><option>Checking eligibility</option><option>Preparing documents</option><option>Applying now</option></select></label>
+          <button type="submit" class="hub-btn hub-form-full">Build my official checklist <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>💰</span><div><h3>Cost Calculator</h3><p>Plan your own yearly budget without guessing.</p></div></div>
+        <div class="hub-form hub-form-grid">
+          <label>Tuition (₹)<input id="fee-tuition" type="number" min="0" inputmode="numeric" placeholder="e.g. 50000"></label>
+          <label>Hostel (₹)<input id="fee-hostel" type="number" min="0" inputmode="numeric" placeholder="Optional"></label>
+          <label>Mess / month (₹)<input id="fee-mess" type="number" min="0" inputmode="numeric" placeholder="Optional"></label>
+          <label>Other costs (₹)<input id="fee-other" type="number" min="0" inputmode="numeric" placeholder="Books, travel…"></label>
+          <div id="fee-result" class="hub-result hub-form-full" aria-live="polite">Add your own amounts to estimate an annual budget.</div>
+          <div class="hub-actions hub-form-full"><button id="fee-calculate" type="button" class="hub-btn-secondary">Calculate</button><button id="fee-verify" type="button" class="hub-link-btn">Verify fees from official source →</button></div>
+        </div>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>🗓️</span><div><h3>Exam Planner</h3><p>Find your timetable and export your own reminder.</p></div></div>
+        <form id="exam-form" class="hub-form hub-form-grid">
+          <label>Branch<input id="exam-branch" maxlength="60" placeholder="e.g. CSE"></label>
+          <label>Semester<select id="exam-semester"><option>1st</option><option>2nd</option><option>3rd</option><option>4th</option><option>5th</option><option>6th</option><option>7th</option><option>8th</option></select></label>
+          <button type="submit" class="hub-btn hub-form-full">Find official timetable <span>→</span></button>
+          <label>My exam / reminder<input id="calendar-title" maxlength="80" placeholder="e.g. Mathematics SEE"></label>
+          <label>Date & time<input id="calendar-date" type="datetime-local"></label>
+          <button id="calendar-export" type="button" class="hub-btn-secondary hub-form-full">Download calendar reminder</button>
+        </form>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>🧾</span><div><h3>Result, Backlog & Revaluation</h3><p>Get the official next step when a result is confusing.</p></div></div>
+        <form id="academic-form" class="hub-form hub-form-grid">
+          <label>My situation<select id="academic-issue"><option>Result abbreviation / grade</option><option>Backlog or re-register</option><option>Revaluation / photocopy</option><option>Attendance shortage</option></select></label>
+          <label>Branch / semester<input id="academic-context" maxlength="80" placeholder="e.g. ECE, 3rd sem"></label>
+          <button type="submit" class="hub-btn hub-form-full">Show my official next steps <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>📄</span><div><h3>Ask a PDF</h3><p>Search regulations, syllabi, notices, and circulars directly.</p></div></div>
+        <form id="pdf-form" class="hub-form">
+          <label for="pdf-question">Your question about an official document</label>
+          <textarea id="pdf-question" rows="3" maxlength="500" placeholder="e.g. What attendance is required to write the SEE?"></textarea>
+          <button type="submit" class="hub-btn">Ask official PDFs <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="hub-card">
+        <div class="hub-card-heading"><span>✨</span><div><h3>Notice Simplifier</h3><p>Turn a long PDACEK notice into a simple action list.</p></div></div>
+        <form id="notice-form" class="hub-form">
+          <label for="notice-text">Paste notice text or describe the circular</label>
+          <textarea id="notice-text" rows="3" maxlength="1000" placeholder="Paste the notice, circular number, or title here…"></textarea>
+          <button type="submit" class="hub-btn">Explain it simply <span>→</span></button>
+        </form>
+      </article>
+
+      <article class="hub-card hub-card-human">
+        <div class="hub-card-heading"><span>🤝</span><div><h3>Human Help Handoff</h3><p>Prepare a clear message when you need the right office.</p></div></div>
+        <div class="hub-form">
+          <label>Help needed from<select id="handoff-topic"><option>Admissions office</option><option>Examination section</option><option>Placement cell</option><option>Hostel office</option><option>Principal / general office</option></select></label>
+          <label>Your name (optional)<input id="handoff-name" maxlength="80" placeholder="Your name"></label>
+          <label>Your issue<textarea id="handoff-issue" rows="2" maxlength="500" placeholder="Describe the help you need"></textarea></label>
+          <div class="hub-actions"><button id="handoff-copy" type="button" class="hub-btn-secondary">Copy my message</button><button id="handoff-find" type="button" class="hub-link-btn">Find the right official contact →</button></div>
+          <p id="handoff-status" class="hub-helper" aria-live="polite">No personal details are sent automatically.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ Features / Why PDA ═══ -->
+  <section id="features" class="features-section">
+    <div class="section-header">
+      <span class="section-badge">WHY PDACEK</span>
+      <h2 class="section-title">A Legacy of Excellence Since 1958</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏛️</div>
+        <h3>Heritage & Legacy</h3>
+        <p>Founded by Late Shri Mahadevappa Rampure under HKE Society — one of the oldest engineering colleges in North Karnataka.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI & Modern Courses</h3>
+        <p>Cutting-edge branches like AI & Machine Learning, Computer Science & Design alongside traditional engineering.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>Research & Innovation</h3>
+        <p>Active research culture with funded projects, MoUs with industries, patents, and AICTE IDEA Lab.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>71-Acre Green Campus</h3>
+        <p>Sprawling campus with gardens, greenery, modern labs, sports grounds, hostels and all amenities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size: 1.2rem; width: 40px; height: 40px;">P</div>
+        <div>
+          <strong>PDA College of Engineering</strong>
+          <p>Kalaburagi, Karnataka — Since 1958</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.pdacek.ac.in" target="_blank">Official Website</a>
+        <a href="https://pda-results.contineo.in" target="_blank">Results</a>
+        <a href="https://alumni.pdacek.ac.in" target="_blank">Alumni</a>
+        <a href="https://pda.edugrievance.com" target="_blank">Grievance</a>
+      </div>
+      <p class="footer-copy">AI Campus Guide • Built with ❤️ for PDACEK</p>
+    </div>
+  </footer>
+
+  <!-- ═══ CHAT WIDGET ═══ -->
+  <div id="chat-widget">
+    <!-- Floating Toggle -->
+    <button id="chat-toggle" aria-label="Open chat">
+      <svg class="chat-icon-open" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <svg class="chat-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span class="chat-badge">Ask AI</span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window">
+      <header id="chat-header">
+        <div class="header-left">
+          <div class="avatar-ring">
+            <div class="header-avatar">🎓</div>
+          </div>
+          <div>
+            <h2>PDA Campus Guide</h2>
+            <span class="status">
+              <span class="status-dot"></span>
+              Online • AI Powered
+            </span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <select id="language-select" aria-label="Response language" title="Response language">
+            <option value="en">EN</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <button id="chat-reset" type="button" aria-label="Start a new conversation" title="New conversation">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 3v6h6"/></svg>
+          </button>
+          <button id="chat-close" type="button" aria-label="Close chat">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <div id="chat-messages">
+        <!-- Welcome message injected by JS -->
+      </div>
+
+      <div id="chat-input-area">
+        <div id="suggestion-chips">
+          <button class="chip" data-q="What courses does PDA offer?">📚 Courses</button>
+          <button class="chip" data-q="How is the placement record at PDA?">💼 Placements</button>
+          <button class="chip" data-q="Tell me about admissions process">🎯 Admissions</button>
+          <button class="chip" data-q="What are the hostel facilities?">🏠 Hostels</button>
+          <button class="chip" data-q="Tell me about the campus and facilities">🏫 Campus</button>
+          <button class="chip" data-q="How do exams work at PDA?">📝 Exams</button>
+        </div>
+        <form id="chat-form">
+          <button id="voice-toggle" type="button" aria-label="Start voice input" title="Speak your question" aria-pressed="false">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3M8 22h8"/></svg>
+          </button>
+          <textarea id="chat-input" rows="1" maxlength="1800" placeholder="Ask anything about PDACEK…" aria-label="Ask a question about PDACEK"></textarea>
+          <button id="chat-send" type="submit" aria-label="Send">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="chat.js"></script>
+  <script src="hub.js"></script>
+</body>
+</html>
