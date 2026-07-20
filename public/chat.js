@@ -274,9 +274,10 @@
   /* ─── Welcome Message ─── */
   function showWelcome() {
     const welcomeHTML = `
-      <strong>Namaste! 🙏 How can I help?</strong>
-
-      Ask about <strong>admissions, courses, placements, exams, hostels</strong>, or campus life. I search the official PDACEK website and indexed PDFs, and link the official source whenever one is found.
+      <strong>Namaste! 🙏 Welcome to the PDA Campus Guide.</strong><br><br>
+      I am your AI assistant for Poojya Doddappa Appa College of Engineering (PDACEK).<br><br>
+      I'm here to help you with information related to admissions, courses, placements, academics, examinations, campus facilities, student services, and college life.<br><br>
+      Please feel free to ask any question related to PDACEK. I'll do my best to assist you with accurate and helpful information.
     `;
     addBotMessage(welcomeHTML);
   }
@@ -330,7 +331,6 @@
       <div class="msg-bubble">${renderMarkdown(text)}${sourceHTML}</div>
     `;
     messages.appendChild(div);
-    scrollToBottom();
   }
 
   function addUserMessage(text) {
@@ -341,7 +341,11 @@
       <div class="msg-bubble">${escapeHtml(text)}</div>
     `;
     messages.appendChild(div);
-    scrollToBottom();
+    
+    // Scroll only to the user's message
+    requestAnimationFrame(() => {
+      div.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
   }
 
   function showTyping() {
@@ -355,7 +359,6 @@
       </div>
     `;
     messages.appendChild(div);
-    scrollToBottom();
   }
 
   function removeTyping() {
@@ -363,11 +366,7 @@
     if (el) el.remove();
   }
 
-  function scrollToBottom() {
-    requestAnimationFrame(() => {
-      messages.scrollTop = messages.scrollHeight;
-    });
-  }
+
 
   /* ─── Markdown Renderer ─── */
   function renderMarkdown(text) {
