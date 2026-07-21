@@ -1,0 +1,114 @@
+{
+  "official": [
+    {
+      "id": "pdacek_main",
+      "name": "PDACEK Official Website",
+      "url": "https://pdacek.ac.in/",
+      "category": "official",
+      "priority": 1,
+      "enabled": true,
+      "indexed": true,
+      "description": "Primary official source for all college information"
+    },
+    {
+      "id": "pdacek_alumni",
+      "name": "PDACEK Alumni Portal",
+      "url": "https://alumni.pdacek.ac.in/",
+      "category": "official",
+      "priority": 2,
+      "enabled": true,
+      "indexed": false,
+      "description": "Alumni network and alumni-related information"
+    },
+    {
+      "id": "pdacek_facebook",
+      "name": "PDACEK Official Facebook",
+      "url": "https://www.facebook.com/pdacekofficial/",
+      "category": "official_social",
+      "priority": 3,
+      "enabled": true,
+      "indexed": false,
+      "description": "Official social media page for announcements and events"
+    },
+    {
+      "id": "pdacek_instagram",
+      "name": "PDACEK Official Instagram",
+      "url": "https://www.instagram.com/pdacekofficial/",
+      "category": "official_social",
+      "priority": 3,
+      "enabled": true,
+      "indexed": false,
+      "description": "Official Instagram for campus photos and updates"
+    },
+    {
+      "id": "pdacek_linkedin",
+      "name": "PDACEK Official LinkedIn",
+      "url": "https://www.linkedin.com/in/pdacekofficial",
+      "category": "official_social",
+      "priority": 3,
+      "enabled": true,
+      "indexed": false,
+      "description": "Professional networking and placement updates"
+    },
+    {
+      "id": "pdacek_youtube",
+      "name": "PDACEK Official YouTube",
+      "url": "https://www.youtube.com/@PDACEKOFFICIAL",
+      "category": "official_social",
+      "priority": 3,
+      "enabled": true,
+      "indexed": false,
+      "description": "Official video content, events, and virtual tours"
+    }
+  ],
+  "external": [
+    {
+      "id": "collegedunia",
+      "name": "Collegedunia",
+      "url": "https://www.collegedunia.com/college/12483-pda-college-of-engineering-gulbarga",
+      "category": "review_platform",
+      "priority": 4,
+      "enabled": true,
+      "indexed": false,
+      "rating": "3.7/5 (80+ reviews)",
+      "description": "Student reviews, ratings, and college comparison data"
+    },
+    {
+      "id": "shiksha",
+      "name": "Shiksha",
+      "url": "https://www.shiksha.com/college/p-d-a-college-of-engineering-kalaburagi-52015",
+      "category": "review_platform",
+      "priority": 4,
+      "enabled": true,
+      "indexed": false,
+      "rating": "Faculty: 3.4-3.7/5, Infrastructure: 3.2/5, Campus Life: 4.0/5",
+      "description": "Detailed student reviews with category-wise ratings"
+    },
+    {
+      "id": "careers360",
+      "name": "Careers360",
+      "url": "https://www.careers360.com/colleges/poojya-doddappa-appa-college-of-engineering-gulbarga",
+      "category": "review_platform",
+      "priority": 4,
+      "enabled": true,
+      "indexed": false,
+      "description": "College rankings, reviews, and placement analysis"
+    },
+    {
+      "id": "zollege",
+      "name": "Zollege",
+      "url": "https://zollege.in/",
+      "category": "review_platform",
+      "priority": 5,
+      "enabled": true,
+      "indexed": false,
+      "description": "Additional student reviews and campus feedback"
+    }
+  ],
+  "metadata": {
+    "last_updated": "2026-07-13T15:00:00Z",
+    "total_sources": 10,
+    "official_count": 6,
+    "external_count": 4
+  }
+}

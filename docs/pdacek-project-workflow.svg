@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">PDACEK AI Chatbot project workflow</title>
+  <desc id="desc">A workflow diagram showing the student interface, Node Express backend, RAG retrieval engine, official vector store, Gemini services, and crawler pipeline.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07152f"/>
+      <stop offset="1" stop-color="#102958"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f74db"/>
+      <stop offset="1" stop-color="#35a8f7"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6746cc"/>
+      <stop offset="1" stop-color="#a268e6"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#087f73"/>
+      <stop offset="1" stop-color="#22b99e"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#020817" flood-opacity=".45"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#a9c8ee"/>
+    </marker>
+    <style>
+      .title { font: 700 42px Arial, sans-serif; fill: #ffffff; }
+      .subtitle { font: 400 20px Arial, sans-serif; fill: #bed3ee; }
+      .section { font: 700 22px Arial, sans-serif; fill: #d9ebff; letter-spacing: 1px; }
+      .node-title { font: 700 20px Arial, sans-serif; fill: #ffffff; text-anchor: middle; }
+      .node-body { font: 400 16px Arial, sans-serif; fill: #e8f2ff; text-anchor: middle; }
+      .note { font: 400 15px Arial, sans-serif; fill: #c8dbf3; text-anchor: middle; }
+      .arrow-label { font: 600 15px Arial, sans-serif; fill: #cfe3f9; text-anchor: middle; }
+      .node { stroke: #b8d9ff; stroke-opacity: .32; stroke-width: 2; filter: url(#shadow); }
+      .line { stroke: #a9c8ee; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke-dasharray: 8 7; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#background)"/>
+  <text x="800" y="70" class="title" text-anchor="middle">PDACEK AI Chatbot — Project Workflow</text>
+  <text x="800" y="105" class="subtitle" text-anchor="middle">Official PDACEK information is retrieved first, then Gemini creates the answer.</text>
+
+  <text x="80" y="165" class="section">LIVE STUDENT QUESTION FLOW</text>
+  <line x1="80" y1="178" x2="1520" y2="178" stroke="#6fa7dc" stroke-opacity=".4"/>
+
+  <g>
+    <rect class="node" x="90" y="230" width="230" height="105" rx="18" fill="url(#blue)"/>
+    <text x="205" y="270" class="node-title">Student / Parent</text>
+    <text x="205" y="300" class="node-body">Types or speaks a question</text>
+  </g>
+  <g>
+    <rect class="node" x="410" y="230" width="270" height="105" rx="18" fill="url(#blue)"/>
+    <text x="545" y="268" class="node-title">Website &amp; Chat UI</text>
+    <text x="545" y="298" class="node-body">index.html • chat.js • hub.js</text>
+  </g>
+  <g>
+    <rect class="node" x="775" y="230" width="260" height="105" rx="18" fill="url(#purple)"/>
+    <text x="905" y="268" class="node-title">Node.js + Express</text>
+    <text x="905" y="298" class="node-body">server.js • POST /api/chat</text>
+  </g>
+  <g>
+    <rect class="node" x="1130" y="230" width="290" height="105" rx="18" fill="url(#purple)"/>
+    <text x="1275" y="268" class="node-title">Validate &amp; Classify</text>
+    <text x="1275" y="298" class="node-body">Factual • Opinion • Mixed</text>
+  </g>
+  <path class="line" d="M320 282 H410"/>
+  <path class="line" d="M680 282 H775"/>
+  <path class="line" d="M1035 282 H1130"/>
+  <text x="365" y="258" class="arrow-label">question</text>
+  <text x="727" y="258" class="arrow-label">JSON request</text>
+
+  <g>
+    <rect class="node" x="235" y="450" width="275" height="120" rx="18" fill="url(#green)"/>
+    <text x="372" y="492" class="node-title">RAG Engine</text>
+    <text x="372" y="522" class="node-body">rag.js embeds the question</text>
+    <text x="372" y="547" class="note">and finds relevant information</text>
+  </g>
+  <g>
+    <rect class="node" x="665" y="425" width="300" height="170" rx="18" fill="#133963"/>
+    <text x="815" y="470" class="node-title">Official Vector Store</text>
+    <text x="815" y="500" class="node-body">data/vector_store.json</text>
+    <text x="815" y="528" class="node-body">372 text chunks + embeddings</text>
+    <text x="815" y="555" class="note">web pages, PDFs, source URLs</text>
+  </g>
+  <g>
+    <rect class="node" x="1120" y="450" width="300" height="120" rx="18" fill="url(#purple)"/>
+    <text x="1270" y="492" class="node-title">Gemini Flash Lite</text>
+    <text x="1270" y="522" class="node-body">Generates final response</text>
+    <text x="1270" y="547" class="note">from prompt + official context</text>
+  </g>
+  <path class="line" d="M1275 335 V390 H372 V450"/>
+  <text x="735" y="380" class="arrow-label">send factual question for retrieval</text>
+  <path class="line" d="M510 510 H665"/>
+  <text x="586" y="490" class="arrow-label">cosine similarity search</text>
+  <path class="line" d="M965 510 H1120"/>
+  <text x="1042" y="490" class="arrow-label">top chunks + sources</text>
+
+  <g>
+    <rect class="node" x="520" y="670" width="360" height="120" rx="18" fill="url(#blue)"/>
+    <text x="700" y="712" class="node-title">Answer Returned to Student</text>
+    <text x="700" y="742" class="node-body">Reply + official source cards + confidence</text>
+    <text x="700" y="767" class="note">Shown safely in the chat interface</text>
+  </g>
+  <path class="line" d="M1270 570 V630 H700 V670"/>
+  <path class="line" d="M520 730 H205 V335"/>
+  <text x="930" y="620" class="arrow-label">AI response</text>
+
+  <text x="80" y="875" class="section">KNOWLEDGE-BASE CREATION FLOW — RUNS DURING RE-CRAWL</text>
+  <line x1="80" y1="888" x2="1520" y2="888" stroke="#6fa7dc" stroke-opacity=".4"/>
+
+  <g>
+    <rect class="node" x="85" y="955" width="220" height="105" rx="18" fill="#15517b"/>
+    <text x="195" y="995" class="node-title">Official Website &amp; PDFs</text>
+    <text x="195" y="1025" class="node-body">pdacek.ac.in documents</text>
+  </g>
+  <g>
+    <rect class="node" x="380" y="955" width="230" height="105" rx="18" fill="url(#green)"/>
+    <text x="495" y="995" class="node-title">Crawler</text>
+    <text x="495" y="1025" class="node-body">scripts/crawl.js</text>
+  </g>
+  <g>
+    <rect class="node" x="690" y="955" width="240" height="105" rx="18" fill="#15517b"/>
+    <text x="810" y="988" class="node-title">Extract &amp; Chunk Text</text>
+    <text x="810" y="1018" class="node-body">Cheerio + pdf-parse</text>
+    <text x="810" y="1043" class="note">500 words, 50-word overlap</text>
+  </g>
+  <g>
+    <rect class="node" x="1010" y="955" width="230" height="105" rx="18" fill="url(#purple)"/>
+    <text x="1125" y="988" class="node-title">Gemini Embedding 2</text>
+    <text x="1125" y="1018" class="node-body">Creates 3072-number vectors</text>
+    <text x="1125" y="1043" class="note">for semantic search</text>
+  </g>
+  <g>
+    <rect class="node" x="1310" y="955" width="210" height="105" rx="18" fill="url(#green)"/>
+    <text x="1415" y="995" class="node-title">Save Safely</text>
+    <text x="1415" y="1025" class="node-body">Validated vector store</text>
+  </g>
+  <path class="line" d="M305 1007 H380"/>
+  <path class="line" d="M610 1007 H690"/>
+  <path class="line" d="M930 1007 H1010"/>
+  <path class="line" d="M1240 1007 H1310"/>
+  <path class="line dash" d="M1415 955 V850 H815 V595"/>
+  <text x="1115" y="840" class="arrow-label">updated index becomes available for RAG search</text>
+
+  <text x="800" y="1140" class="subtitle" text-anchor="middle">Key idea: the crawler prepares official knowledge; RAG retrieves it; Gemini turns it into a helpful answer.</text>
+</svg>
