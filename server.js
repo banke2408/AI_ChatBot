@@ -14,7 +14,7 @@ import {
   getVectorStoreMetadata,
 } from "./rag.js";
 
-// Force IPv4 — prevents ConnectTimeoutError on networks that block IPv6
+// Force IPv4 — prevents ConnectTimeoutError on networks that block IPv6 .....
 dns.setDefaultResultOrder("ipv4first");
 
 const __filename = fileURLToPath(import.meta.url);

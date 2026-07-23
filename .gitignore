@@ -1,3 +1,6 @@
 node_modules
 .env
-data/
+.DS_Store
+
+# Exclude log files (not needed for others)
+data/*.log

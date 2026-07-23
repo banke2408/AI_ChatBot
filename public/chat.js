@@ -284,6 +284,9 @@
 
   /* ─── Add Messages ─── */
   function addBotMessage(text, sources) {
+    // If the student has scrolled up to read an earlier message, never pull
+    // them away from it when a response finishes.
+    const shouldFollowResponse = isNearChatBottom();
     const div = document.createElement("div");
     div.className = "message bot";
 
@@ -331,6 +334,10 @@
       <div class="msg-bubble">${renderMarkdown(text)}${sourceHTML}</div>
     `;
     messages.appendChild(div);
+<<<<<<< HEAD
+=======
+    if (shouldFollowResponse) scrollToMessageStart(div);
+>>>>>>> a64b26d00f6688181651c7557a523cb6d3320041
   }
 
   function addUserMessage(text) {
@@ -349,6 +356,7 @@
   }
 
   function showTyping() {
+    const shouldFollowTyping = isNearChatBottom();
     const div = document.createElement("div");
     div.className = "message bot";
     div.id = "typing-msg";
@@ -359,6 +367,10 @@
       </div>
     `;
     messages.appendChild(div);
+<<<<<<< HEAD
+=======
+    if (shouldFollowTyping) scrollToBottom();
+>>>>>>> a64b26d00f6688181651c7557a523cb6d3320041
   }
 
   function removeTyping() {
@@ -366,7 +378,27 @@
     if (el) el.remove();
   }
 
+<<<<<<< HEAD
 
+=======
+  function isNearChatBottom() {
+    const remaining = messages.scrollHeight - messages.scrollTop - messages.clientHeight;
+    return remaining < 56;
+  }
+
+  function scrollToBottom() {
+    requestAnimationFrame(() => {
+      messages.scrollTo({ top: messages.scrollHeight, behavior: "smooth" });
+    });
+  }
+
+  function scrollToMessageStart(message) {
+    requestAnimationFrame(() => {
+      // A long answer should begin at its first line, not its final line.
+      messages.scrollTo({ top: Math.max(0, message.offsetTop - 12), behavior: "smooth" });
+    });
+  }
+>>>>>>> a64b26d00f6688181651c7557a523cb6d3320041
 
   /* ─── Markdown Renderer ─── */
   function renderMarkdown(text) {
